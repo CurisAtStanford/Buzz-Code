@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <style type="text/css" media="screen">
+  body {
+    overflow: hidden;
+  }
+
+  #editor {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+  }
+
+  #run_button{
+    position: absolute;
+    right: 25%;
+    color:green;
+    font-size: 11px;
+    font-family: Courier;
+  }
+
+  #reset_button{
+    position: absolute;
+    right: 16%;
+    color:red;
+    font-size: 11px;
+    font-family: Courier;
+  }
+
+  #result{
+    position: absolute;
+    left:50%;
+    top: 30px;
+    height: 100%;
+    width: 50%;
+
+  }
+  </style>
+</head>
+<body>
+
+  <pre id="editor">Paste your code here!</pre>
+  <button id="run_button" onclick="run_code()">Update</button>
+  <button id="reset_button" onclick="reset_code()">Reset</button>
+  <iframe id="result"></iframe>
+
+  <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+  if (!localStorage.getItem('myCode')){
+    my_code = "<html>\n\n<style>\nh1 {\n    color:black;\n    font-family: \"Times New Roman\";\n}\n\nh3 {\n    color:black;\n    font-family: \"Times New Roman\";\n}\n\nbody {\n    background-color:white;\n    text-align: center;\n}\n</style>\n\n<body>\n    <h1>My Super Special Awesome Website</h1>\n    <h3>I'm having the best summer at Stanford University!</h3>\n    <img src=\"http://chasemcniel.weebly.com/uploads/1/4/5/4/14541026/8394649.png\" id=\"stanford\">\n</body>\n\n</html>";
+    localStorage.setItem('myCode', my_code);
+  } 
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/twilight");
+  editor.getSession().setMode("ace/mode/html");
+  my_code = localStorage.getItem('myCode');
+  editor.getSession().setValue(my_code);
+
+  window.frames[0].document.body.innerHTML = my_code;
+
+  function run_code() {
+    var code_text = editor.getValue();
+    window.frames[0].document.body.innerHTML = code_text;
+    localStorage.setItem('myCode', code_text);
+  }
+  </script>
+
+</body>
+</html>

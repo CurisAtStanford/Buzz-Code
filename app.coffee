@@ -1,4 +1,5 @@
 $ ->
+
 	code_default = """<html>
 		<style>
 			h1 {
@@ -21,6 +22,10 @@ $ ->
 			<h1>My Super Special Awesome Website</h1>
 			<h3>I'm having the best summer at Stanford University!</h3>
 			<img src="http://chasemcniel.weebly.com/uploads/1/4/5/4/14541026/8394649.png" id="stanford">
+			<audio controls autoplay>
+				<source src="audio/Life-of-Riley.mp3" type="audio/mp3">
+				Your browser does not support the audio element.
+			</audio>	
 		</body>
 	</html>
 	"""
